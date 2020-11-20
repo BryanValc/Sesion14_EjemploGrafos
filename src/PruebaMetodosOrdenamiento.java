@@ -29,16 +29,28 @@ class MetodosOrdenamiento{
 			
 		}
 		public static void ordenacionBurbuja2(int [] numeros) {
+			int comparaciones=0;
+			int intercambios=0;
 			
-			for (int i = 1; i < numeros.length; i++) {
-				for (int j = 0; j <= numeros.length-i-1; j++) {
+			int i =1;
+			boolean ordenado=false;
+			long ini = System.nanoTime();
+			while (i<numeros.length) {
+				i+=1;
+				ordenado=true;
+				for (int j = 0; j < numeros.length-i-1; j++) {
+					comparaciones+=1;
 					if(numeros[j]>numeros[j+1]) {
+						intercambios+=1;
+						ordenado=false;
 						int aux = numeros[j];
 						numeros[j]=numeros[j+1];
 						numeros[j+1]=aux;
 					}
 				}
 			}
+			long fin = System.nanoTime();
+			System.out.println("tiempo de ejecucion en nanosegundos:"+(fin-ini));
 			
 		}
 		public static void ordenacionBurbuja3(int [] numeros) {
@@ -71,7 +83,8 @@ public class PruebaMetodosOrdenamiento{
 		MetodosOrdenamiento.Burbuja.mostrarVector(numeros);
 		MetodosOrdenamiento.Burbuja.ordenacionBurbuja1(numeros);
 		MetodosOrdenamiento.Burbuja.mostrarVector(numeros);
-		
+		MetodosOrdenamiento.Burbuja.ordenacionBurbuja2(numeros);
+		MetodosOrdenamiento.Burbuja.mostrarVector(numeros);
 		
 		
 	}
